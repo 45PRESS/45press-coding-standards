@@ -9,6 +9,7 @@
 		<exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found"/>
 		<exclude name="Squiz.Commenting.DocCommentAlignment.SpaceBeforeStar"/>
 		<exclude name="Squiz.PHP.CommentedOutCode.Found"/>
+		<exclude name="WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase"/>
     <exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
     <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
