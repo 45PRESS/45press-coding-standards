@@ -1,0 +1,9 @@
+{
+  "name" : "45PRESS/45press-coding-standards",
+  "description" : "Package contains all coding standards of the 45PRESS",
+  "require" : {
+    "php" : ">=5.4.0,<8.0.0-dev",
+    "squizlabs/php_codesniffer" : "^2.0"
+  },
+  "type" : "phpcodesniffer-standard"
+}
