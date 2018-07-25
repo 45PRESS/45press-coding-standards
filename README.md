@@ -1,4 +1,4 @@
-# 45Press Coding Standards
+# 45PCS
 ### WPCS
 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
 
@@ -8,7 +8,7 @@ https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
 {
 	"repositories": [
 		{
-			"url": "https://github.com/45PRESS/45press-coding-standards.git",
+			"url": "https://github.com/45PRESS/php-standards.git",
 			"type": "git"
 		}
 	],
@@ -16,7 +16,7 @@ https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
 		"squizlabs/php_codesniffer": "^3.3",
 		"wp-coding-standards/wpcs": "^0.14.1",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
-		"45PRESS/45press-coding-standards": "dev-master"
+		"45PRESS/php-standards": "dev-master"
 	}
 }
 ```
