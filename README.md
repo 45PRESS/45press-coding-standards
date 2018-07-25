@@ -2,13 +2,12 @@
 ### WPCS
 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
 
-
+### composer.json
 ```
-// package.json
 {
-	"repositories": [
-		{
-			"url": "https://github.com/45PRESS/php-standards.git",
+  "repositories": [
+    {
+      "url": "https://github.com/45PRESS/php-standards.git",
 			"type": "git"
 		}
 	],
