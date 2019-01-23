@@ -2,13 +2,12 @@
   "name" : "45PCS",
   "description" : "Package contains all php coding standards for 45Press",
   "require-dev": {
-		"squizlabs/php_codesniffer": "3.*",
-		"wp-coding-standards/wpcs": "^1.1.0",
-		"fig-r/psr2r-sniffer": "^0.5.0",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
-		"phpcompatibility/phpcompatibility-wp": "^1.0",
-		"automattic/vipwpcs": "^0.3.0",
-		"giacocorsiglia/wordpress-stubs": "^4.9"
-	},
-  "type" : "phpcodesniffer-standard"
+    "squizlabs/php_codesniffer": "^3.4.0",
+    "wp-coding-standards/wpcs": "^2.0.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+    "phpcompatibility/phpcompatibility-wp": "^2.0.0",
+    "slevomat/coding-standard": "^4.8",
+    "roave/security-advisories": "dev-master",
+    "consistence/coding-standard": "^3.7"
+	}
 }
