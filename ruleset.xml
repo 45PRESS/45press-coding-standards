@@ -3,8 +3,6 @@
 
 	<description>PHP Coding Guidelines</description>
 
-	<autoload>./vendor/wp-coding-standards/wpcs/WordPress/PHPCSAliases.php</autoload>
-
 	<exclude-pattern>*/tests/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>\.git</exclude-pattern>
@@ -13,133 +11,197 @@
 	<arg name="colors"/>
 	<arg value="sp"/>
 
-	<rule ref="WordPress">
-		<exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
-		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
-		<exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCase"/>
-		<exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar"/>
-		<exclude name="WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase"/>
-		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
-		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
-		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
-		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
-		<exclude name="Generic.Formatting.SpaceAfterCast.NoSpace"/>
-		<exclude name="WordPress.WhiteSpace.CastStructureSpacing.NoSpaceAfterCloseParenthesis"/>
-		<exclude name="WordPress.WP.PostsPerPage.posts_per_page_posts_per_page"/>
-		<exclude name="WordPress.Security.NonceVerification.NoNonceVerification"/>
-		<exclude name="WordPress.Security.ValidatedSanitizedInput.InputNotValidated"/>
-		<exclude name="WordPress.Security.ValidatedSanitizedInput.InputNotSanitized"/>
-		<exclude name="WordPress.Security.ValidatedSanitizedInput.MissingUnslash"/>
-		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet"/>
-		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedScript"/>
+	<config name="testVersion" value="7.2-"/>
+	<rule ref="PHPCompatibilityWP">
+		<include-pattern>*\.php$</include-pattern>
 	</rule>
 
-	<rule ref="WordPressVIPMinimum">
-		<exclude name="WordPress.VIP.AdminBarRemoval.RemovalDetected"/>
-		<exclude name="WordPressVIPMinimum.Files.IncludingFile.IncludingFile"/>
-		<exclude name="WordPress.VIP.SuperGlobalInputUsage.AccessDetected"/>
-		<exclude name="WordPressVIPMinimum.VIP.RestrictedFunctions.custom_role_add_role"/>
-		<exclude name="WordPressVIPMinimum.VIP.RestrictedFunctions.wp_remote_get_wp_remote_get"/>
-		<exclude name="WordPress.VIP.ValidatedSanitizedInput.InputNotValidated"/>
-		<exclude name="WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized"/>
+	<config name="minimum_supported_wp_version" value="5.0.1"/>
+
+	<rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
+	<rule ref="SlevomatCodingStandard.Classes.DisallowLateStaticBindingForConstants"/>
+	<rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
+	<rule ref="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming">
+		<exclude-pattern>SlevomatCodingStandard/Sniffs/Namespaces/AbstractFullyQualifiedGlobalReference.php</exclude-pattern>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
+	<rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
+	<rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing"/>
+	<rule ref="SlevomatCodingStandard.Classes.UselessLateStaticBinding"/>
+	<rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
+		<properties>
+			<property name="linesCountBetweenAnnotationsGroups" value="0"/>
+			<property name="annotationsGroups" type="array">
+			    <element value="
+			      @internal,
+						@deprecated,
+						@codeCoverageIgnore,
+						@phpcsSuppress,
+						@dataProvider,
+						@link,
+						@var,
+						@param,
+						@return,
+					"/>
+			</property>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations">
+		<properties>
+			<property name="forbiddenAnnotations" type="array">
+			    <element value="@author"/>
+			    <element value="@created"/>
+			    <element value="@copyright"/>
+			    <element value="@license"/>
+			    <element value="@package"/>
+			    <element value="@throws"/>
+			    <element value="@version"/>
+			</property>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Commenting.ForbiddenComments"/>
+	<rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment"/>
+	<rule ref="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
+	<rule ref="SlevomatCodingStandard.ControlStructures.ControlStructureSpacing">
+		<properties>
+			<property name="tokensToCheck" type="array">
+			    <element value="T_GOTO"/>
+			    <element value="T_SWITCH"/>
+			    <element value="T_THROW"/>
+			    <element value="T_TRY"/>
+			    <element value="T_YIELD"/>
+			    <element value="T_YIELD_FROM"/>
+			</property>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.ControlStructures.DisallowContinueWithoutIntegerOperandInSwitch"/>
+	<rule ref="SlevomatCodingStandard.ControlStructures.DisallowEqualOperators"/>
+	<rule ref="SlevomatCodingStandard.ControlStructures.EarlyExit"/>
+	<rule ref="SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator">
+		<properties>
+			<property name="lineLengthLimit" value="180"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
+	<rule ref="SlevomatCodingStandard.ControlStructures.RequireShortTernaryOperator"/>
+	<rule ref="SlevomatCodingStandard.ControlStructures.RequireTernaryOperator"/>
+	<rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly">
+		<exclude-pattern>SlevomatCodingStandard/Sniffs/Exceptions/ReferenceThrowableOnlySniff.php</exclude-pattern>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
+	<rule ref="SlevomatCodingStandard.Functions.UnusedParameter"/>
+	<rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
+		<properties>
+			<property name="fullyQualifiedKeywords" type="array"/>
+			<property name="allowFallbackGlobalFunctions" value="true"/>
+			<property name="allowFallbackGlobalConstants" value="true"/>
+			<property name="allowFullyQualifiedGlobalFunctions" value="true"/>
+			<property name="allowFullyQualifiedExceptions" value="false"/>
+			<property name="allowFullyQualifiedNameForCollidingClasses" value="true"/>
+			<property name="allowFullyQualifiedNameForCollidingFunctions" value="true"/>
+			<property name="allowFullyQualifiedNameForCollidingConstants" value="true"/>
+			<property name="allowPartialUses" value="false"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
+		<properties>
+			<property name="searchAnnotations" value="false"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Namespaces.UselessAlias"/>
+	<rule ref="SlevomatCodingStandard.Namespaces.UseSpacing"/>
+	<rule ref="SlevomatCodingStandard.PHP.OptimizedFunctionsWithoutUnpacking"/>
+	<rule ref="SlevomatCodingStandard.PHP.UselessParentheses"/>
+	<rule ref="SlevomatCodingStandard.PHP.UselessSemicolon"/>
+	<rule ref="SlevomatCodingStandard.Operators.RequireCombinedAssignmentOperator"/>
+	<rule ref="SlevomatCodingStandard.Operators.RequireOnlyStandaloneIncrementAndDecrementOperators"/>
+	<rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+		<properties>
+			<property name="enableObjectTypeHint" value="false"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+		<properties>
+			<property name="newlinesCountBetweenOpenTagAndDeclare" value="0"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.TypeHints.NullTypeHintOnLastPosition"/>
+	<rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>
+	<rule ref="SlevomatCodingStandard.Variables.DuplicateAssignmentToVariable"/>
+	<rule ref="SlevomatCodingStandard.Variables.UnusedVariable"/>
+	<rule ref="SlevomatCodingStandard.Variables.UselessVariable"/>
+
+	<rule ref="PSR12">
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
+		<exclude name="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+		<exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
 	</rule>
 
-	<!-- Things that probably won't work and needs a dev to review -->
-	<rule ref="WordPress.VIP.FileSystemWritesDisallow.file_ops_fwrite">
-		<type>error</type>
-		<severity>6</severity>
-		<message>File system writes only work in /tmp/ and inside the /uploads/ folder on VIP Go. To do filesystem writes you must use the WP_Filesystem class, using functions such as %s() won't work or will return unexpected results.</message>
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
+
+	<rule ref="Squiz.PHP.EmbeddedPhp"/>
+	<rule ref="Squiz.PHP.EmbeddedPhp.SpacingBefore">
+		<severity>0</severity>
 	</rule>
-	<rule ref="WordPress.WP.AlternativeFunctions.file_system_read_fwrite">
-		<type>error</type>
-		<severity>5</severity>
-		<message>File system writes only work in /tmp/ and inside the /uploads/ folder on VIP Go. To do filesystem writes you must use the WP_Filesystem class, using functions such as %s() won't work or will return unexpected results.</message>
+	<rule ref="Squiz.PHP.EmbeddedPhp.Indent">
+		<severity>0</severity>
 	</rule>
-	<!--
-	Things that really should be fixed, but don't nessesarily have to be for the site to work.
-	This includes potential security holes as well as functions for performance reasons.
-	-->
-	<rule ref="WordPressVIPMinimum.VIP.RestrictedFunctions.file_get_contents_file_get_contents">
-		<type>error</type>
-		<Severity>5</Severity>
-		<message>%s() is uncached. If this is being used to query a remote file please use wpcom_vip_file_get_contents() instead. If it's used for a local file please use WP_Filesystem instead. Read more here:</message>
+	<rule ref="Squiz.PHP.EmbeddedPhp.OpenTagIndent">
+		<severity>0</severity>
 	</rule>
-	<rule ref="WordPress.WP.AlternativeFunctions.file_system_read_file_get_contents">
-		<type>error</type>
-		<Severity>5</Severity>
-		<message>%s() is uncached. If this is being used to query a remote file please use wpcom_vip_file_get_contents() instead. If it's used for a local file please use WP_Filesystem instead.</message>
-	</rule>
-	<rule ref="WordPressVIPMinimum.VIP.FetchingRemoteData.fileGetContentsUknown">
-		<type>error</type>
-		<Severity>5</Severity>
-		<message>%s() is uncached. If this is being used to query a remote file please use wpcom_vip_file_get_contents() instead. If it's used for a local file please use WP_Filesystem instead.</message>
-	</rule>
-	<rule ref="WordPress.WP.AlternativeFunctions.file_system_read_fopen">
-		<type>error</type>
-		<severity>5</severity>
-		<message>File operations should use WP_Filesystem methods instead of direct PHP filesystem calls. Found: %s().</message>
-	</rule>
-	<rule ref="WordPress.WP.AlternativeFunctions.file_system_read_fclose">
-		<type>error</type>
-		<severity>5</severity>
-		<message>File operations should use WP_Filesystem methods instead of direct PHP filesystem calls. Found: %s().</message>
-	</rule>
-	<rule ref="WordPress.Security.EscapeOutput.UnsafePrintingFunction">
-		<type>error</type>
-		<severity>5</severity>
-	</rule>
-	<rule ref="WordPress.Security.EscapeOutput.OutputNotEscaped">
-		<type>error</type>
-		<severity>5</severity>
-	</rule>
-	<rule ref="WordPressVIPMinimum.VIP.ExitAfterRedirect.NoExit">
-		<type>error</type>
-		<severity>5</severity>
-	</rule>
-	<rule ref="WordPressVIPMinimum.VIP.ProperEscapingFunction.hrefSrcEscUrl">
-		<type>error</type>
-		<severity>5</severity>
-	</rule>
-	<rule ref="WordPressVIPMinimum.VIP.WPQueryParams.suppressFiltersTrue">
-		<type>error</type>
-		<severity>5</severity>
-	</rule>
-	<rule ref="WordPressVIPMinimum.JS.HTMLExecutingFunctions.append">
-		<type>error</type>
-		<severity>5</severity>
-	</rule>
-	<rule ref="WordPressVIPMinimum.JS.InnerHTML.innerHTML">
-		<type>error</type>
-		<severity>5</severity>
-	</rule>
-	<rule ref="WordPressVIPMinimum.JS.StringConcat.StringConcatNext">
-		<type>error</type>
-		<severity>5</severity>
-	</rule>
-	<rule ref="Generic.NamingConventions.ConstructorName.OldStyle">
-		<type>error</type>
-		<severity>5</severity>
-		<message>This is currently deprecated in PHP 7.0 and will be removed in the future. This will cause a fatal error on newer versions of PHP and should be fixed.</message>
+	<rule ref="Squiz.PHP.EmbeddedPhp.SpacingAfter">
+		<severity>0</severity>
 	</rule>
 
-	<rule ref="Squiz.Scope.MemberVarScope"/>
-	<rule ref="Squiz.Scope.MethodScope"/>
-	<rule ref="Squiz.Scope.StaticThisUsage"/>
-	<rule ref="Squiz.WhiteSpace.CastSpacing"/>
-	<rule ref="PEAR.NamingConventions.ValidClassName"/>
-	<rule ref="Squiz.Functions.FunctionDeclaration"/>
-	<rule ref="PEAR.Functions.ValidDefaultValue"/>
-	<rule ref="PSR2.Namespaces.NamespaceDeclaration"/>
-	<rule ref="PSR2.Namespaces.UseDeclaration"/>
-	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
-	<rule ref="Squiz.Classes.LowercaseClassKeywords"/>
-	<rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>
-	<rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall"/>
-	<rule ref="Generic.CodeAnalysis.JumbledIncrementer"/>
-	<rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
-	<rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
+	<rule ref="Generic.PHP.DisallowShortOpenTag"/>
+	<rule ref="Generic.PHP.DisallowAlternativePHPTags"/>
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+	<rule ref="PSR2.Files.ClosingTag"/>
 
-	<config name="testVersion" value="7.0-"/>
-	<rule ref="PHPCompatibility"/>
+	<rule ref="WordPress.DB.PreparedSQLPlaceholders"/>
+	<rule ref="WordPress.DB.PreparedSQL"/>
+	<rule ref="WordPress.DB.RestrictedFunctions"/>
+	<rule ref="WordPress.DB.RestrictedClasses"/>
+	<rule ref="Generic.PHP.DiscourageGoto">
+		<type>error</type>
+		<message>The "goto" language construct should not be used.</message>
+	</rule>
+	<rule ref="Squiz.PHP.Eval.Discouraged">
+		<type>error</type>
+		<message>eval() is a security risk so not allowed.</message>
+	</rule>
+	<rule ref="WordPress.PHP.RestrictedPHPFunctions"/>
+	<rule ref="Generic.Files.ByteOrderMark"/>
+	<rule ref="WordPress.WP.I18n"/>
+	<rule ref="WordPress.WP.CapitalPDangit"/>
+
+	<rule ref="WordPress.Security.EscapeOutput"/>
+	<rule ref="WordPress.Security.SafeRedirect"/>
+	<rule ref="WordPress.Security.NonceVerification"/>
+	<rule ref="WordPress.PHP.DevelopmentFunctions"/>
+	<rule ref="WordPress.PHP.DiscouragedPHPFunctions"/>
+	<rule ref="WordPress.WP.DeprecatedFunctions"/>
+	<rule ref="WordPress.WP.DeprecatedClasses"/>
+	<rule ref="WordPress.WP.DeprecatedParameters"/>
+	<rule ref="WordPress.WP.DeprecatedParameterValues"/>
+	<rule ref="WordPress.WP.AlternativeFunctions"/>
+	<rule ref="WordPress.WP.DiscouragedConstants"/>
+	<rule ref="WordPress.WP.DiscouragedFunctions"/>
+	<rule ref="WordPress.WP.GlobalVariablesOverride"/>
+	<rule ref="WordPress.PHP.StrictComparisons"/>
+	<rule ref="WordPress.PHP.StrictInArray"/>
+	<rule ref="Generic.PHP.BacktickOperator"/>
+	<rule ref="Generic.PHP.Syntax"/>
+	<rule ref="WordPress.WP.I18n.MissingTranslatorsComment">
+		<type>error</type>
+	</rule>
+	<rule ref="WordPress.WP.I18n.TranslatorsCommentWrongStyle">
+		<type>error</type>
+	</rule>
+	<rule ref="WordPress.Security.PluginMenuSlug"/>
+	<rule ref="WordPress.WP.CronInterval"/>
+	<rule ref="WordPress.WP.PostsPerPage"/>
+	<rule ref="WordPress.WP.TimezoneChange"/>
+	<rule ref="WordPress.PHP.PregQuoteDelimiter"/>
 
 </ruleset>
